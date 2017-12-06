@@ -3,16 +3,19 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { PlaylistService } from './playlist.service';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlaylistComponent,
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [PlaylistService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
