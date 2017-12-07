@@ -1,0 +1,53 @@
+<div class="row" *ngIf="playlist">
+    <div class="col-lg-8">
+        <div class="page-header">
+        <h1>
+            {{ playlist.name }}
+            <small> por {{ playlist.author }} </small>
+        </h1>
+        </div>
+        <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/34Na4j8AVgA?rel=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+    </div>
+    <div class="col-lg-4">
+        <div class="col-lg-4">
+            <div class="page-header">
+                <h1>Playlist</h1>
+            </div>
+        </div>
+        <div>
+            <div style="margin-bottom:10px;">
+                <div class="form-group">
+                    <input type="url" placeholder="YouTube URL" class="form-control" [(ngModel)]="url" required>
+                </div>
+                <button class="btn btn-primary btn-block" (click)="addSong(url)">Adicionar</button>
+            </div>
+            <div class="list-group">
+                <!-- Adiciona os sons da playlist -->
+                <div *ngFor="let song of playlist.songs">
+                <!-- Se o som está tocando -->
+                <div *ngIf="song.playing > 0">
+                    <li class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <strong style="color: black;" (click)="playSong(song.id)" class="mb-1">{{ song.title }}</strong>
+                            <small (click)="deleteSong(song.id)">&times;</small>
+                        </div>
+                    </li>
+                </div>
+                <!-- Se o som não está tocando -->
+                <div *ngIf="song.playing <= 0">
+                    <li class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <strong style="color: black;" (click)="playSong(song.id)" class="mb-1">{{ song.title }}</strong>
+                            <small (click)="deleteSong(song.id)">&times;</small>
+                        </div>
+                    </li>
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

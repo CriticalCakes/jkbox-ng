@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaylistService } from '../playlist.service';
+import { Playlist } from '../playlist';
 
 @Component({
     selector: 'playlist',
@@ -8,10 +9,44 @@ import { PlaylistService } from '../playlist.service';
 })
 export class PlaylistComponent implements OnInit {
 
-    constructor(public plService : PlaylistService) { }
+    playlist: Playlist;
+    url: string;
 
-    ngOnInit() {
-        this.plService.getPlaylist(6);
+    constructor(public plService: PlaylistService) {
+        this.loadPlaylist();
     }
+
+    loadPlaylist() {
+        this.plService
+            .getPlaylist(6)
+            .subscribe(
+                (data) => {
+                    console.log(data);
+                    this.playlist = data;
+                }
+            );
+    }
+
+    addSong(url) {
+        this.plService
+            .addSong(this.playlist.id, url)
+            .subscribe(
+                (data) => {
+                    this.playlist.songs.push(data);
+                }
+            );
+    }
+
+    playSong(id: number) {
+        console.log('play');
+        console.log(id);
+    }
+
+    deleteSong(id: number) {
+        console.log('delete');
+        console.log(id);
+    }
+
+    ngOnInit() {}
 
 }
