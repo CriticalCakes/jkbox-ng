@@ -7,7 +7,8 @@
         </h1>
         </div>
         <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/34Na4j8AVgA?rel=0" frameborder="0" allowfullscreen></iframe>
+        <!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/34Na4j8AVgA?rel=0" frameborder="0" allowfullscreen></iframe> -->
+        <youtube-player [videoId]="video_id" (ready)="savePlayer($event)" (change)="onStateChange($event)" ></youtube-player>
         </div>
 
     </div>
@@ -26,7 +27,7 @@
             </div>
             <div class="list-group">
                 <!-- Adiciona os sons da playlist -->
-                <div *ngFor="let song of playlist.songs">
+                <div *ngFor="let song of playlist.songs; let i = index">
                 <!-- Se o som está tocando -->
                 <div *ngIf="song.playing > 0">
                     <li class="list-group-item list-group-item-action flex-column align-items-start">
@@ -41,7 +42,7 @@
                     <li class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <strong style="color: black;" (click)="playSong(song.id)" class="mb-1">{{ song.title }}</strong>
-                            <small (click)="deleteSong(song.id)">&times;</small>
+                            <small (click)="deleteSong(song.id, i)">&times;</small>
                         </div>
                     </li>
                 </div>

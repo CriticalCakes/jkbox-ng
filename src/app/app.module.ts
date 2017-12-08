@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { PlaylistService } from './playlist.service';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { YoutubePlayerModule } from 'ngx-youtube-player';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    YoutubePlayerModule
   ],
   providers: [
     PlaylistService,

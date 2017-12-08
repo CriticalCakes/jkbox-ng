@@ -17,6 +17,16 @@ export class PlaylistService {
         return this.http.get<Playlist>(url);
     }
 
+    createPlaylist(name: string, author: string) {
+        const url = `${this.baseUrl}/`;
+        return  this.http
+                    .post<Playlist>(
+                        url,
+                        {name: name, author: author},
+                        { headers: new HttpHeaders().set('Content-Type', 'application/json') }
+                    );
+    }
+
     addSong(id: number, song_url: string) {
         const url = `${this.baseUrl}/${id}/song/`;
         const song = { url: song_url };
@@ -25,6 +35,15 @@ export class PlaylistService {
                     .post<Song> (
                         url,
                         song,
+                        { headers: new HttpHeaders().set('Content-Type', 'application/json') }
+                    );
+    }
+
+    deleteSong(playlist_id: number, song_id) {
+        const url = `${this.baseUrl}/${playlist_id}/song/${song_id}/delete`;
+        return  this.http
+                    .post(
+                        url,
                         { headers: new HttpHeaders().set('Content-Type', 'application/json') }
                     );
     }

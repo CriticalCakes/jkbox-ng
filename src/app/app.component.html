@@ -1,1 +1,16 @@
-<playlist></playlist>
+<div class="row" *ngIf="!created">
+    <div class="offset-md-4 col-lg-4">
+        <div class="form-group">
+            <label>Nome da festa</label>
+            <input [(ngModel)]="name" type="text" class="form-control" placeholder="Ex.: Festa da web">
+        </div>
+        <div class="form-group">
+            <label>Seu nome</label>
+            <input [(ngModel)]="author" type="text" class="form-control" placeholder="Ex.: Pedro">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="createPlaylist()" >Criar</button>
+    </div>
+</div>
+<div *ngIf="created">
+    <playlist plId="{{ this.id }}"></playlist>
+</div>
